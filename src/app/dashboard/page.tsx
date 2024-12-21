@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { assistanceData, assistenceSchema } from "@/types/people";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserCheck } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z, ZodType } from "zod";
@@ -24,6 +24,9 @@ const DashboardHomePage = () => {
 	});
 
 	const { isLoading, errors, storeAssistance } = usePeople();
+
+	const formRef = useRef<any>(null);
+
 	const handleCheckAssistance = async (data: assistanceData) => {
 		const response = await storeAssistance(data);
 		if (response?.data) {
@@ -33,6 +36,8 @@ const DashboardHomePage = () => {
 			});
 			console.log(response);
 		}
+
+		formRef.current.reset();
 	};
 
 	useEffect(() => {
@@ -53,7 +58,7 @@ const DashboardHomePage = () => {
 				<h1 className="text-3xl font-bold my-3">Control de asistencia</h1>
 			</div>
 			<div className="block">
-				<form onSubmit={handleSubmit(handleCheckAssistance)} className="">
+				<form onSubmit={handleSubmit(handleCheckAssistance)} ref={formRef}>
 					<div className="grid flex-1 gap-2 space-y-2">
 						<div className="w-full space-y-2">
 							<Label className="font-semibold">Cedula</Label>
