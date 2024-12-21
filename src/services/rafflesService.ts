@@ -53,3 +53,9 @@ export const saveParticipants = (id: string, data: any) => httpApiRequest({
     method: 'post',
     data
 })
+
+export const updateWinner = (id: string, data: any) => httpApiRequest({
+    url: `${endpoint}/${id}/winner`,
+    method: 'put',
+    data
+})

@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, UsersRound } from "lucide-react";
 import {
 	SidebarContent,
 	SidebarGroup,
@@ -14,8 +14,13 @@ import {
 const items = [
 	{
 		title: "Inicio",
-		url: "#",
+		url: "/dashboard",
 		icon: Home,
+	},
+	{
+		title: "Personas",
+		url: "/dashboard/people",
+		icon: UsersRound,
 	},
 	{
 		title: "Sorteos",

@@ -72,18 +72,18 @@ export const useAuth = ({
 		"user/me",
 		meTest,
 		{
-			refreshInterval: 5000,
-			onSuccess: (data, key, config) => {
-				setIsMounted(true);
-			},
-			// 	onError: (err, key, config) => {
-			// 		setIsMounted(true);
-			// 	},
+			// refreshInterval: 5000,
+			// onSuccess: (data, key, config) => {
+			// 	setIsMounted(true);
+			// },
+			// onError: (err, key, config) => {
+			// 	console.log("Error", err);
+			// 	setIsMounted(true);
+			// },
 		}
 	);
 
 	useEffect(() => {
-		console.log(userLogged);
 		if (middleware == "guest" && redirectIfAuthenticated && userLogged)
 			router.push(redirectIfAuthenticated);
 
@@ -91,11 +91,12 @@ export const useAuth = ({
 			router.push(redirectIfAuthenticated);
 
 		if (middleware === "auth" && errorLogin) logOut();
-	}, [errorLogin, userLogged]);
+	}, [errorLogin, userLogged, isFetchingUser]);
 
 	return {
 		isFetchingUser,
 		userLogged,
+		errorLogin,
 		isMounted,
 		isLoading,
 		errors,

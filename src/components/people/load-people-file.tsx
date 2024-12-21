@@ -1,4 +1,4 @@
-import { useState } from "react";
+"use client";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { FilePlus, FilePlus2 } from "lucide-react";
@@ -13,12 +13,11 @@ import {
 } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { useRaffle } from "@/hooks/useRaffle";
+import { useState } from "react";
+import { usePeople } from "@/hooks/usePeople";
 
-interface props {
-	raffleId: string;
-}
-
-const LoadFileToCreateRaffleParticipant = ({ raffleId }: props) => {
+interface props {}
+const LoadPeopleByExcel = ({}: props) => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [error, setError] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
@@ -27,8 +26,8 @@ const LoadFileToCreateRaffleParticipant = ({ raffleId }: props) => {
 	const {
 		isLoading: loadinFile,
 		errors: errorFile,
-		storeParticipants,
-	} = useRaffle();
+		uploadPeople,
+	} = usePeople();
 
 	const processExcel = async (file: any) => {
 		if (!selectedFile) {
@@ -44,7 +43,7 @@ const LoadFileToCreateRaffleParticipant = ({ raffleId }: props) => {
 			// Crear FormData para enviar el archivo
 			const formData = new FormData();
 			formData.append("file", selectedFile);
-			const response = await storeParticipants(raffleId, formData);
+			await uploadPeople(formData);
 			window.location.reload();
 		} catch (err) {
 			console.log(err);
@@ -70,21 +69,21 @@ const LoadFileToCreateRaffleParticipant = ({ raffleId }: props) => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant={"default"} className="w-full">
-					<span className="mr-3">Importar participantes</span>
+					<span className="mr-3">Cargar Personas</span>
 					<FilePlus2 size={15} />
 				</Button>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-2xl">
 				<DialogHeader>
 					<DialogTitle>
-						<p className="text-2xl">Crear sorteo</p>
+						<p className="text-2xl">Cargar personas</p>
 					</DialogTitle>
 					<DialogDescription></DialogDescription>
 				</DialogHeader>
 				<div className="items-center space-x-2">
 					<div className="md:flex space-y-2 md:space-y-0 gap-4">
 						<div className="w-full space-y-2">
-							<Label>Nombre del sorteo</Label>
+							<Label>Subir archivo</Label>
 							<Input
 								type="file"
 								placeholder="Sorteo 1"
@@ -115,4 +114,4 @@ const LoadFileToCreateRaffleParticipant = ({ raffleId }: props) => {
 	);
 };
 
-export default LoadFileToCreateRaffleParticipant;
+export default LoadPeopleByExcel;

@@ -3,10 +3,10 @@ export interface RaffleParticipant {
     type: string;
     attributes: {
         name: string,
-        email: string,
+        lastName: string,
         identification_number: string,
         is_winner: boolean,
-        won_at: string,
+        is_active: string,
         created_at: string,
         updated_at: string,
     }

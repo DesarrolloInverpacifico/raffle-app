@@ -3,6 +3,7 @@ import {
 	Dialog,
 	DialogClose,
 	DialogContent,
+	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -46,7 +47,7 @@ export const DialogRaffleCreate = () => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button variant={"default"} className="w-full">
-					<span className="mr-3">Nuevo usuario</span>
+					<span className="mr-3">Nuevo sorteo</span>
 					<UserPlus size={15} />
 				</Button>
 			</DialogTrigger>
@@ -55,6 +56,7 @@ export const DialogRaffleCreate = () => {
 					<DialogTitle>
 						<p className="text-2xl">Crear sorteo</p>
 					</DialogTitle>
+					<DialogDescription></DialogDescription>
 				</DialogHeader>
 				<form
 					onSubmit={handleSubmit(handleCreateRaffle)}

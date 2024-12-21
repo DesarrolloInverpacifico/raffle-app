@@ -6,6 +6,7 @@ import {
 	getRaffle,
 	saveParticipants,
 	saveRaffle,
+	updateWinner,
 } from "@/services/rafflesService";
 import { raffleData, RaffleType } from "@/types/raffle";
 import { RaffleCriteria } from "@/types/raffle-criteria";
@@ -129,6 +130,20 @@ export const useRaffle = () => {
 		}
 	};
 
+	const storeWinner = async (id: string, data: any): Promise<any> => {
+		setIsLoading(true);
+		setErrors({});
+
+		try {
+			const response = await updateWinner(id, data);
+			console.log(response.data);
+		} catch (err: any) {
+			setErrors(err.data.errors);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
 	return {
 		isLoading,
 		errors,
@@ -145,5 +160,6 @@ export const useRaffle = () => {
 		showPrizes,
 		showCriterias,
 		storeRaffle,
+		storeWinner,
 	};
 };
