@@ -12,7 +12,7 @@ const axios = Axios.create({
 })
 
 const axios_api = Axios.create({
-    baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v${process.env.NEXT_PUBLIC_BACKEND_API_VERSION}`,
+    baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/${process.env.NEXT_PUBLIC_BACKEND_API_VERSION}`,
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Accept': 'application/json'

@@ -1,0 +1,10 @@
+name: "raffles-front"
+
+services:
+  cmsweb:
+    container_name: lottery_front
+    build:
+      context: .
+    env_file: ".env"
+    ports:
+      - "3004:3000"

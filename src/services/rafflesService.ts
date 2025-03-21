@@ -1,15 +1,14 @@
-import { httpApiRequest, httpRequest } from "@/lib/request";
+import { httpApiRequest } from "@/lib/request";
 import { raffleData } from "@/types/raffle";
 
 
 const endpoint = '/raffles';
 
-export const allRaffles = ({ params }: Record<string, string>) => {
+export const allRaffles = () => {
 
     return httpApiRequest({
         url: endpoint,
         method: 'GET',
-        params: params
     })
 }
 
@@ -34,6 +33,13 @@ export const getParticipants = (id: string) => {
     })
 }
 
+export const resetParticipants = (id: string) => {
+    return httpApiRequest({
+        url: `${endpoint}/${id}/resetParticipants`,
+        method: 'POST',
+    });
+}
+
 export const getPrizes = (id: string) => {
     return httpApiRequest({
         url: `${endpoint}/${id}/prizes`,
@@ -48,13 +54,13 @@ export const getCriterias = (id: string) => {
     })
 }
 
-export const saveParticipants = (id: string, data: any) => httpApiRequest({
+export const saveParticipants = (id: string, data: FormData) => httpApiRequest({
     url: `${endpoint}/${id}/participants`,
     method: 'post',
     data
 })
 
-export const updateWinner = (id: string, data: any) => httpApiRequest({
+export const updateWinner = (id: string, data: { people_id: string }) => httpApiRequest({
     url: `${endpoint}/${id}/winner`,
     method: 'put',
     data

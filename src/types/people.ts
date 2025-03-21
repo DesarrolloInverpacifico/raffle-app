@@ -17,5 +17,5 @@ export type assistanceData = {
 };
 
 export const assistenceSchema: ZodType<assistanceData> = z.object({
-    identification: z.string().min(2, { message: "El usuario es requerido" }),
+    identification: z.string().min(1, { message: "El usuario es requerido" }),
 });
