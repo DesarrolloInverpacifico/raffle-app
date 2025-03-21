@@ -1,8 +1,8 @@
 name: "raffles-front"
 
 services:
-  cmsweb:
-    container_name: lottery_front
+  raffle_front:
+    container_name: raffle_front
     build:
       context: .
     env_file: ".env"
